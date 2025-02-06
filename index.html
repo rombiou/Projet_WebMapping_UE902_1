@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Carte Leaflet - Flux WMS</title>     
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    </head>    
+<body>
+    <!-- Bande en haut -->
+    <div id="header-banner">
+        M2 SIGMA - BIOU Romain - UE 902-1 - WebMapping
+    </div>
+    <div id="container">
+        <!-- Overlay d'introduction -->
+        <div id="introOverlay">
+            <h1>Bienvenue sur l'application ForestScope</h1>
+            <p>Cette application présente les résultats de notre projet de télédétection, où nous avons réalisé différentes cartes en utilisant des séries temporelles d'images Sentinel-2. <br>Ces cartes permettent d’explorer la répartition des essences forestières et d’analyser l’évolution de la végétation à travers l’indice NDVI.</p>
+            <p>Notre zone d’étude, représentée par le rectangle rouge clair sur la carte, englobe Toulouse et ses environs. <br>Elle offre une vision détaillée de la couverture forestière locale et met en avant les dynamiques du paysage végétal.</p>
+            <p>En parcourant cette application, vous pourrez visualiser nos différentes réalisations et mieux comprendre la structure et l'évolution des formations forestières.</p>
+            <p>Pour en savoir plus sur le projet et la méthodologie employée, vous pouvez consulter la documentation complète ici :<br><br>
+                <a href="https://mlang.frama.io/cours-marc-lang/stable/sigmaM2_telea/sigmaM2_projet.html" target="_blank">Projet de télédétection</a>
+            </p>
+            <p>
+                <button id="startButton">Suivant →</button>
+            </p>
+        </div>
+        <!-- Panneau latéral -->
+        <div id="sidebar">
+            <!-- Sélecteur de la couche principale -->
+            <label for="layerSelector">Choisir une carte :</label>
+            <select id="layerSelector">
+                <option value="">Aucune carte sélectionnée</option>
+                <option value="essences">Carte des essences</option>
+                <option value="ndvi">Carte NDVI</option>
+                <option value="masque_foret">Masque Forêt</option>
+            </select>
+
+            <!-- Sélecteur de date pour NDVI (caché par défaut) -->
+            <label for="ndviSelector" id="ndviLabel" style="display:none;">Choisir une date :</label>
+            <select id="ndviSelector" style="display:none;">
+                <option value="ndvi_02_22">Février 2022</option>
+                <option value="ndvi_03_22">Mars 2022</option>
+                <option value="ndvi_04_22">Avril 2022</option>
+                <option value="ndvi_07_22">Juillet 2022</option>
+                <option value="ndvi_09_22">Septembre 2022</option>
+                <option value="ndvi_11_22">Novembre 2022</option>
+            </select>
+
+            <!-- Zone d'affichage du titre et de la description -->
+            <div id="layerInfo" style="display: none; margin-top: 10px;">
+                <h3 id="layerTitle"></h3>
+                <p id="layerDescription"></p>
+            </div>
+
+            <!-- Zone pour afficher la légende -->
+            <div id="legendContainer" style="display: none;">
+                <h3>Légende</h3>
+                <img id="legendImage" src="" alt="Légende">
+            </div>
+
+            <!-- Zone d'affichage des informations -->
+            <div id="infoContainer" style="display: none; margin-top: 15px;">
+                <h3>Informations :</h3>
+                <div id="infoBox" class="info-box">Cliquez sur la carte pour afficher des informations.</div>
+            </div>
+        </div>
+        <!-- Carte -->
+        <div id="map"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
